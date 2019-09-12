@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:wanandroid/pages/home/MainPage.dart';
+import 'package:wanandroid/pages/login/LoginMain.dart';
+import 'package:wanandroid/pages/login/Register.dart';
+import 'package:wanandroid/pages/login/LoginInfo.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -12,6 +16,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: MainPage(),
+      routes: {
+        "login":(context)=>LoginMain(),
+        "register":(context)=>Register(),
+        "main":(context)=>MainPage(),
+        "info":(context)=>LoginInfo(),
+      },
     );
   }
 }

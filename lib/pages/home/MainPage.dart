@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:wanandroid/pages/home/HomePage.dart';
+import 'package:wanandroid/pages/settings/SettinsMain.dart';
+import 'package:wanandroid/pages/system/SystemMain.dart';
+import 'package:wanandroid/pages/weChat/WeChatMessage.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -11,7 +14,7 @@ class MainPage extends StatefulWidget {
 
 class MainPageState extends State<MainPage> with TickerProviderStateMixin{
   int _currentIndex = 0;
-  List pages = [HomePage(),HomePage(),HomePage(),HomePage(),HomePage()];
+  List pages = [HomePage(),WeChatMessage(),SystemMain(),HomePage(),SettingsMain()];
   @override
   void initState() {
     // TODO: implement initState
