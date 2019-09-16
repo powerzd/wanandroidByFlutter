@@ -3,6 +3,7 @@ import 'package:wanandroid/pages/home/MainPage.dart';
 import 'package:wanandroid/pages/login/LoginMain.dart';
 import 'package:wanandroid/pages/login/Register.dart';
 import 'package:wanandroid/pages/login/LoginInfo.dart';
+import 'package:wanandroid/pages/search/SearchMain.dart';
 
 
 void main() => runApp(MyApp());
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         "register":(context)=>Register(),
         "main":(context)=>MainPage(),
         "info":(context)=>LoginInfo(),
+        "search":(context)=>SearchMain(),
       },
     );
   }

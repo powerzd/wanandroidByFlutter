@@ -28,6 +28,7 @@ dependencies:
   shared_preferences: ^0.5.3+4
   flutter_swiper : ^1.1.6
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -49,6 +50,7 @@ flutter:
     - assets/qq.png
     - assets/weixin.png
     - assets/weibo.png
+    - assets/search.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

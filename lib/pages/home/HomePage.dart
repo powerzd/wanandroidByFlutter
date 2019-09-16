@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:wanandroid/base/api.dart';
+import 'package:wanandroid/base/baseColors.dart';
 import 'package:wanandroid/pages/home/HomePageProjectData.dart';
 import 'package:wanandroid/pages/home/HomePageProjectData.dart' as prefix1;
 import 'package:wanandroid/pages/home/HomePageResultData.dart';
@@ -69,8 +70,26 @@ class HomePageState extends State<HomePage>
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text("首页"),
+        backgroundColor: Colors.white,
+        title:Container(
+          padding: EdgeInsets.all(5.0),
+          height: 35.0,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8.0),
+            color: baseColor,
+          ),
+          child: Row(
+            children: <Widget>[
+              Image.asset("assets/search.png"),
+              SizedBox(width: 30.0,),
+              Text("点我开始搜索",style: TextStyle(color:searchTextColor,fontSize: 16.0),)
+            ],
+          ),
+        ),
+
         bottom: TabBar(
+          indicatorColor: Colors.grey,
+          labelColor: Colors.grey,
           controller: _tabController,
           tabs: <Widget>[
             Tab(
@@ -194,13 +213,7 @@ class HomePageState extends State<HomePage>
       setState(() {
         isPerformingRequest = true;
       });
-      if (homePageResultDataList != null && _articleCurrentPage == 1) {
-        homePageResultDataList.clear();
-      }
 
-      if (homePageProjectDataList != null && _projectCurrentPage == 1) {
-        homePageProjectDataList.clear();
-      }
 
       HomePageResultData articleData;
       HomePageProjectData projectData;
@@ -212,6 +225,13 @@ class HomePageState extends State<HomePage>
       ]);
       var responseHomeResultJson = json.decode(responseHomeResult.toString());
       setState(() {
+        if (homePageResultDataList != null && _articleCurrentPage == 1) {
+          homePageResultDataList.clear();
+        }
+
+        if (homePageProjectDataList != null && _projectCurrentPage == 1) {
+          homePageProjectDataList.clear();
+        }
         articleData = HomePageResultData.fromJson(responseHomeResultJson[0]);
         for (int i = 0; i < articleData.data.datas.length; i++) {
           homePageResultDataList.add(articleData.data.datas[i]);
