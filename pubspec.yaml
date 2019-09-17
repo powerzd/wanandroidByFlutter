@@ -27,6 +27,7 @@ dependencies:
   fluttertoast: ^3.1.3
   shared_preferences: ^0.5.3+4
   flutter_swiper : ^1.1.6
+  flutter_webview_plugin : ^0.3.8
 
 
 dev_dependencies:
@@ -51,6 +52,7 @@ flutter:
     - assets/weixin.png
     - assets/weibo.png
     - assets/search.png
+    - assets/more.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

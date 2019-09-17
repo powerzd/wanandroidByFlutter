@@ -20,7 +20,9 @@ class SearchMainState extends State<SearchMain> {
   List<String> _maybeList = ["Android", "Java", "Kotlin"];
   Future _future;
   Future _futureResult;
+  String _hintTextValue = "Android";
   List<DataX> _searchResultList = [];
+  FocusNode _commentFocus = FocusNode();
 
   @override
   void initState() {
@@ -40,14 +42,15 @@ class SearchMainState extends State<SearchMain> {
             decoration: BoxDecoration(
                 color: baseColor, borderRadius: BorderRadius.circular(8.0)),
             child: TextField(
+              focusNode: _commentFocus,
               onSubmitted: (value){
-                getSearchData(value);
+                _futureResult = getSearchData(value);
               },
               decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(
                       vertical: 10.0, horizontal: 10.0),
                   border: OutlineInputBorder(borderSide: BorderSide.none),
-                  hintText: "Android"),
+                  hintText: _hintTextValue),
               textInputAction: TextInputAction.search,
             ),
           ),
@@ -97,8 +100,18 @@ class SearchMainState extends State<SearchMain> {
                         spacing: 8.0,
                         runSpacing: 2.0,
                         children: _maybeList.map<Widget>((s) {
-                          return Chip(
-                            label: Text('$s'),
+                          return GestureDetector(
+                            child: Chip(
+                              label: Text('$s'),
+                            ),
+                            onTap: (){
+                              _commentFocus.unfocus();
+                              _futureResult =  getSearchData('$s');
+                              setState(() {
+                                _hintTextValue = '$s';
+
+                              });
+                            },
                           );
                         }).toList(),
                       );
@@ -125,9 +138,12 @@ class SearchMainState extends State<SearchMain> {
                   }
                 case ConnectionState.waiting:
                   {
-                    return CircularProgressIndicator(
-
-                    );
+                   return Center(
+                     child: Container(
+                       child: CircularProgressIndicator(),
+                       margin: EdgeInsets.fromLTRB(0, 100.0, 0, 0),
+                     ),
+                   );
                   }
                 case ConnectionState.done:
                   {
@@ -141,16 +157,22 @@ class SearchMainState extends State<SearchMain> {
                                   decoration: BoxDecoration(
                                       border: Border(bottom: BorderSide(width: 1, color: baseColor))
                                   ),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: <Widget>[
-                                      SizedBox(height: 10.0,),
-                                      Text(_searchResultList[index].title,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16.0),),
-                                      Text(_searchResultList[index].author),
-                                      SizedBox(height: 10.0,),
-                                    ],
-                                  ),
+                                  child: GestureDetector(
+                                    onTap: (){
+                                      Navigator.pushNamed(context, "detail",arguments: {"address":_searchResultList[index].link});
+                                    },
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: <Widget>[
+                                        SizedBox(height: 10.0,),
+                                        Text(_searchResultList[index].title,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16.0),),
+                                        Text("作者: " + _searchResultList[index].author),
+                                        SizedBox(height: 10.0,),
+                                      ],
+                                    ),
+                                  )
+
                                 );
                             },
                             itemCount: _searchResultList.length,
