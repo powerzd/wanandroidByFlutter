@@ -3,5 +3,5 @@
 ### 二、首页
 分为两个tab页，其中列表可以进行上拉刷新和下拉加载。
 
-![](https://user-gold-cdn.xitu.io/2019/9/17/16d3cecdf159a355?w=464&h=960&f=gif&s=3963503 =400x300)
-![](https://user-gold-cdn.xitu.io/2019/9/17/16d3ced0f17dec45?w=464&h=960&f=gif&s=1656236 =400x300)
+![](https://user-gold-cdn.xitu.io/2019/9/17/16d3cecdf159a355?w=464&h=960&f=gif&s=3963503)
+![](https://user-gold-cdn.xitu.io/2019/9/17/16d3ced0f17dec45?w=464&h=960&f=gif&s=1656236)
