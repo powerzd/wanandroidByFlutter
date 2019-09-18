@@ -109,7 +109,6 @@ class SearchMainState extends State<SearchMain> {
                               _futureResult =  getSearchData('$s');
                               setState(() {
                                 _hintTextValue = '$s';
-
                               });
                             },
                           );

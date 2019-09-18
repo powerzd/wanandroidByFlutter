@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wanandroid/pages/home/HomePage.dart';
 import 'package:wanandroid/pages/settings/SettinsMain.dart';
 import 'package:wanandroid/pages/system/SystemMain.dart';
-import 'package:wanandroid/pages/weChat/WeChatMessage.dart';
+import 'package:wanandroid/pages/weChatAccount/WeChatAccountMain.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -14,7 +14,7 @@ class MainPage extends StatefulWidget {
 
 class MainPageState extends State<MainPage> with TickerProviderStateMixin{
   int _currentIndex = 0;
-  List pages = [HomePage(),WeChatMessage(),SystemMain(),HomePage(),SettingsMain()];
+  List pages = [HomePage(),WeChatAccountMain(),SystemMain(),HomePage(),SettingsMain()];
   @override
   void initState() {
     // TODO: implement initState
@@ -28,7 +28,7 @@ class MainPageState extends State<MainPage> with TickerProviderStateMixin{
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("首页")),
-          BottomNavigationBarItem(icon: Icon(Icons.menu), title: Text("项目")),
+          BottomNavigationBarItem(icon: Icon(Icons.menu), title: Text("公众号")),
           BottomNavigationBarItem(icon: Icon(Icons.storage), title: Text("体系")),
           BottomNavigationBarItem(
               icon: Icon(Icons.star_border), title: Text("收藏")),

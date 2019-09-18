@@ -1,22 +1,16 @@
-class WeChatChaptersData {
+class WeChatAccountData {
     List<Data> data;
-    int errorCode;
-    String errorMsg;
 
-    WeChatChaptersData({this.data, this.errorCode, this.errorMsg});
+    WeChatAccountData({this.data});
 
-    factory WeChatChaptersData.fromJson(Map<String, dynamic> json) {
-        return WeChatChaptersData(
+    factory WeChatAccountData.fromJson(Map<String, dynamic> json) {
+        return WeChatAccountData(
             data: json['data'] != null ? (json['data'] as List).map((i) => Data.fromJson(i)).toList() : null, 
-            errorCode: json['errorCode'], 
-            errorMsg: json['errorMsg'], 
         );
     }
 
     Map<String, dynamic> toJson() {
         final Map<String, dynamic> data = new Map<String, dynamic>();
-        data['errorCode'] = this.errorCode;
-        data['errorMsg'] = this.errorMsg;
         if (this.data != null) {
             data['data'] = this.data.map((v) => v.toJson()).toList();
         }
@@ -57,7 +51,6 @@ class Data {
         data['parentChapterId'] = this.parentChapterId;
         data['userControlSetTop'] = this.userControlSetTop;
         data['visible'] = this.visible;
-
         return data;
     }
 }
