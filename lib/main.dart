@@ -5,6 +5,7 @@ import 'package:wanandroid/pages/login/LoginMain.dart';
 import 'package:wanandroid/pages/login/Register.dart';
 import 'package:wanandroid/pages/login/LoginInfo.dart';
 import 'package:wanandroid/pages/search/SearchMain.dart';
+import 'package:wanandroid/pages/tool/ToolMain.dart';
 
 
 
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         "info":(context)=>LoginInfo(),
         "search":(context)=>SearchMain(),
         "detail":(context)=>ShowDetail(),
+        "tool":(context)=>ToolMain(),
       },
     );
   }
