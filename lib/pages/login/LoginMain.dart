@@ -1,9 +1,12 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:math';
 
+import 'package:cookie_jar/cookie_jar.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:dio/dio.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:wanandroid/base/api.dart';
 import 'package:wanandroid/pages/login/RegisterResultData.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -166,26 +169,21 @@ class LoginMainState extends State<LoginMain> {
   }
 
   login() async{
+    List<String> cookieValue;
     debugPrint(_passward + _userName);
     Dio loginDio = new Dio();
     FormData formData = FormData.from({
       "username":_userName,
       "password":_passward,
     });
-    var loginResult = await loginDio.post(baseUrl + "user/login",data: formData);
-    var loginResultJson = json.decode(loginResult.toString());
-    RegisterResultData registerResultData = RegisterResultData.fromJson(loginResultJson);
-    if(registerResultData.errorCode == 0){
-      Fluttertoast.showToast(msg: "登录成功");
-      setUser();
-    }else {
-      Fluttertoast.showToast(msg: registerResultData.errorMsg);
-    }
-  }
-
-  setUser() async{
+    Response response = await loginDio.post(baseUrl + "user/login",data: formData);
+    response.headers.forEach((String name,List<String> values){
+      if(name == "set-cookie"){
+        cookieValue = values;
+      }
+    });
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setString("userName",_userName);
+    await preferences.setStringList("cookie",cookieValue);
     await Navigator.pushNamedAndRemoveUntil(context, "main",(router) => router == null);
   }
 }

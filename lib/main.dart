@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wanandroid/pages/collect/CollectMain.dart';
 import 'package:wanandroid/pages/detail/ShowDetail.dart';
 import 'package:wanandroid/pages/home/MainPage.dart';
 import 'package:wanandroid/pages/login/LoginMain.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         "search":(context)=>SearchMain(),
         "detail":(context)=>ShowDetail(),
         "tool":(context)=>ToolMain(),
+        "collect":(context)=>CollectMain(),
       },
     );
   }

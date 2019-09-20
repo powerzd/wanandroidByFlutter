@@ -28,6 +28,9 @@ dependencies:
   shared_preferences: ^0.5.3+4
   flutter_swiper : ^1.1.6
   flutter_webview_plugin : ^0.3.8
+  cookie_jar: ^1.0.1
+  path_provider: ^1.3.0
+  shimmer: ^1.0.1
 
 
 dev_dependencies:
@@ -53,6 +56,13 @@ flutter:
     - assets/weibo.png
     - assets/search.png
     - assets/more.png
+    - assets/collect.png
+    - assets/rank.png
+    - assets/settins.png
+    - assets/rank_2.png
+    - assets/total.png
+    - assets/my_rank.png
+    - assets/history.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
