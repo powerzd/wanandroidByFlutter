@@ -141,9 +141,11 @@ class WeChatAccountMainState extends State<WeChatAccountMain>
     // TODO: implement build
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.white,
           elevation: 0.0,
-          title: Text("微信公众号"),
+          title: Text("微信公众号",style: TextStyle(color: Colors.black),),
           leading: IconButton(
+            color: Colors.black,
             onPressed: () {
               _controller.fling(velocity: _isPanelVisible ? -1.0 : 1.0);
             },

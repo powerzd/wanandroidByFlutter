@@ -41,9 +41,11 @@ class ToolMainState extends State<ToolMain>{
             case ConnectionState.none:
               // TODO: Handle this case.
               break;
-            case ConnectionState.waiting:
-              // TODO: Handle this case.
-              break;
+            case ConnectionState.waiting:{
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
             case ConnectionState.active:
               // TODO: Handle this case.
               break;
@@ -120,8 +122,8 @@ class ToolMainState extends State<ToolMain>{
   getRandomColor() {
     return Color.fromARGB(
         255,
-        Random.secure().nextInt(255),
-        Random.secure().nextInt(255),
-        Random.secure().nextInt(255));
+        Random.secure().nextInt(888),
+        Random.secure().nextInt(888),
+        Random.secure().nextInt(888));
   }
 }
