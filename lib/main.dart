@@ -17,8 +17,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'wanandroid',
+      //设置主题
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+
       ),
       home: MainPage(),
       routes: {
