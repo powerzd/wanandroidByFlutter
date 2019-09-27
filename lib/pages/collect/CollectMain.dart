@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:wanandroid/base/api.dart';
@@ -71,8 +72,9 @@ class CollectMainState extends State<CollectMain>{
         future: _future,
         builder: (context,snp){
           switch(snp.connectionState){
-            case ConnectionState.none:
-              break;
+            case ConnectionState.none:{
+              return Container();
+            }
             case ConnectionState.waiting:{
               return _buildWaitingSimmer();
             }
@@ -104,10 +106,7 @@ class CollectMainState extends State<CollectMain>{
     var collectResult =
     await collectDio.get(baseUrl + "lg/collect/list/0/json", options: options);
     var collectResultJson = json.decode(collectResult.toString());
-    setState(() {
-      homePageResultData = HomePageResultData.fromJson(collectResultJson);
-    });
-    debugPrint(collectResult.toString());
+    homePageResultData = HomePageResultData.fromJson(collectResultJson);
   }
 }
 

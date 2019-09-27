@@ -5,9 +5,11 @@ import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wanandroid/base/api.dart';
+import 'package:wanandroid/pages/home/HomePageResultData.dart';
 import 'package:wanandroid/pages/settings/SettingsRankData.dart';
 
 class SettingsMain extends StatefulWidget {
@@ -168,7 +170,8 @@ class SettingsMainState extends State<SettingsMain> {
                         ],
                       ),
                       onTap: (){
-                        Navigator.pushNamed(context, "collect");
+                        getCollect();
+
                       },
                     ),
 
@@ -326,5 +329,29 @@ class SettingsMainState extends State<SettingsMain> {
       settingsRankData = SettingsRankData.fromJson(rankResultJson);
     });
     debugPrint("rankResult = " + rankResult.toString());
+  }
+
+  Future getCollect() async{
+    HomePageResultData homePageResultData;
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    dynamic cookie = sharedPreferences.getStringList("cookie");
+    Dio collectDio = new Dio();
+    Map<String, dynamic> _headers = new Map();
+    _headers["Cookie"] = cookie.toString();
+    Options options = new Options();
+    options.contentType =
+        ContentType.parse("application/x-www-form-urlencoded");
+    options.connectTimeout = 1000 * 30;
+    options.receiveTimeout = 1000 * 30;
+    options.headers = _headers;
+    var collectResult =
+    await collectDio.get(baseUrl + "lg/collect/list/0/json", options: options);
+    var collectResultJson = json.decode(collectResult.toString());
+    homePageResultData = HomePageResultData.fromJson(collectResultJson);
+    if(homePageResultData.errorCode == -1001){
+      Fluttertoast.showToast(msg: homePageResultData.errorMsg);
+    }else {
+      Navigator.pushNamed(context, "collect");
+    }
   }
 }

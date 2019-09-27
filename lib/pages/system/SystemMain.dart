@@ -1,10 +1,14 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:math';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:wanandroid/base/api.dart';
+import 'package:wanandroid/pages/home/HomePageResultData.dart';
 import 'package:wanandroid/pages/system/SystemMainData.dart';
 
 class SystemMain extends StatefulWidget {
@@ -110,4 +114,6 @@ class SystemMainState extends State<SystemMain> with TickerProviderStateMixin {
     var systemResultJson = json.decode(systemResult.toString());
     systemMainData = SystemMainData.fromJson(systemResultJson);
   }
+
+
 }
